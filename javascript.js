@@ -27,17 +27,19 @@ function operate(operator, a, b) {
 const display = document.querySelector('.display')
 const numbers = document.querySelectorAll('.number')
 const operators = document.querySelectorAll('.operator')
+const decimal = document.querySelector('.decimal')
+
 
 let firstNum = '',
     secondNum = '',
     result = 0,
     operator = '',
-    equal = false;
+    rm = '';
 
 
 function getNum() {
     numbers.forEach(number => number.addEventListener('click', function () {
-        if ( operator === '') { // get first number
+        if ( operator === '') {
             firstNum += number.textContent;
             display.textContent = firstNum;
         } else {
@@ -51,13 +53,11 @@ getNum();
 
 function calculator() {
     operators.forEach(op => op.addEventListener('click', function() {
-        if ( op.textContent === '='){
-            equal = true;
-        } else {
+        if (operator === '') {
             operator = op.textContent;
             display.textContent = operator;
         }
-        if (equal == true){
+        if ( secondNum !== '') {
             switch(operator) {
                 case '+':
                     result = add(+firstNum, +secondNum);
@@ -78,11 +78,15 @@ function calculator() {
                 default:
                     break;
             }
-            display.textContent = result;
             firstNum = result;
-            secondNum = '';
-            equal = false;
+            display.textContent = firstNum;
+            operator = op.textContent;
+            secondNum = '';  
+            //display.textContent = operator; for secind screen
         }
+            if (operator === '=') {
+                operator = '';            
+            } 
 
     }))
 }
@@ -102,18 +106,45 @@ function reset(){
 reset();
 
 function del(){
-    const del = document.querySelector('.del')
-    del.addEventListener('click', () => {
-        if(firstNum !== '' && operator === '' && secondNum === '') {
-            firstNum = firstNum.slice(0,-1);
+    const toDel = document.querySelector('.del')
+    toDel.addEventListener('click', () => {
+        if ( firstNum !== '' && secondNum === '' && operator === '') {
+            firstNum = firstNum
+                            .toString()
+                            .slice(0, -1);
             display.textContent = firstNum;
-        } else if (firstNum !== '' && operator !== '' && secondNum === ''){
-            operator = '';
+        } else if ( firstNum !== '' && secondNum === '' && operator !== ''){
+            operator = operator.slice(0, -1);
             display.textContent = operator;
         } else {
-            secondNum.slice(0,-1);
+            secondNum = secondNum.slice(0, -1);
             display.textContent = secondNum;
         }
     });
 }
 del();
+
+let firstNumDecimal = false,
+    secondNumDecimal = false;
+
+function addDecimals() {
+    decimal.addEventListener('click', () =>{
+        if ( firstNumDecimal == false){
+            if ( display.textContent === firstNum) {
+                firstNum += '.';
+                display.textContent = firstNum;
+                decimalPressed = true;
+            }
+        }
+        if (secondNumDecimal == false){
+            if (display.textContent === secondNum) {
+                secondNum += '.';
+                display.textContent = secondNum;
+                secondNumDecimal = false;
+            }
+            
+        }
+
+    })
+}
+addDecimals();
