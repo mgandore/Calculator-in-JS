@@ -18,13 +18,10 @@ function percent(a, b) {
     return a/100 * b;
 }
 
-function operate(operator, a, b) {
-    return operator(a, b);
-}
-
-
+//////////////////////////////////////////////////////////////////////////////////
 
 const display = document.querySelector('.display')
+const secondDisplay = document.querySelector('.second-display')
 const numbers = document.querySelectorAll('.number')
 const operators = document.querySelectorAll('.operator')
 const decimal = document.querySelector('.decimal')
@@ -32,7 +29,7 @@ const decimal = document.querySelector('.decimal')
 
 let firstNum = '',
     secondNum = '',
-    result = 0,
+    result = '',
     operator = '',
     rm = '';
 
@@ -55,7 +52,7 @@ function calculator() {
     operators.forEach(op => op.addEventListener('click', function() {
         if (operator === '') {
             operator = op.textContent;
-            display.textContent = operator;
+            display.textContent = '';
         }
         if ( secondNum !== '') {
             switch(operator) {
@@ -79,18 +76,25 @@ function calculator() {
                     break;
             }
             firstNum = result;
-            display.textContent = firstNum;
-            operator = op.textContent;
-            secondNum = '';  
-            //display.textContent = operator; for secind screen
+            operator = op.textContent;  
+            secondNum = '';
         }
-            if (operator === '=') {
-                operator = '';            
-            } 
-
+        if (operator === '=') {
+            operator = '';
+            display.textContent = `${firstNum}`;
+            if ( result !== '') {
+                secondDisplay.textContent = '=';
+            }             
+        } else {
+            display.textContent = '';
+            secondDisplay.textContent = `${firstNum}${operator}`;
+        } 
+        
+        
     }))
 }
 calculator();
+
 
 function reset(){
     const clear = document.querySelector('.clear')
@@ -101,9 +105,11 @@ function reset(){
         result = '';
         equal = false;
         display.textContent = '';
+        secondDisplay.textContent = '';
     });
 }
 reset();
+
 
 function del(){
     const toDel = document.querySelector('.del')
@@ -113,20 +119,27 @@ function del(){
                             .toString()
                             .slice(0, -1);
             display.textContent = firstNum;
+            if ( secondDisplay.textContent !== '=') {
+                secondDisplay.textContent = secondDisplay.textContent.slice(0, -1);
+        }
+ 
         } else if ( firstNum !== '' && secondNum === '' && operator !== ''){
             operator = operator.slice(0, -1);
             display.textContent = operator;
+            secondDisplay.textContent = secondDisplay.textContent.slice(0, -1);
         } else {
             secondNum = secondNum.slice(0, -1);
-            display.textContent = secondNum;
+            display.textContent = secondNum; 
         }
     });
 }
 del();
 
+
 let firstNumDecimal = false,
     secondNumDecimal = false;
 
+    
 function addDecimals() {
     decimal.addEventListener('click', () =>{
         if ( firstNumDecimal == false){
