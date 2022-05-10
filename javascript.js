@@ -75,9 +75,14 @@ function calculator() {
                 default:
                     break;
             }
-            firstNum = result;
-            operator = op.textContent;  
-            secondNum = '';
+            if (operator === '/' && secondNum === '0'){
+                alert ('WARNING!! You can\'t divide by 0');
+                secondNum = '';
+            } else {
+                firstNum = result.toFixed(3);
+                operator = op.textContent;  
+                secondNum = '';
+            }
         }
         if (operator === '=') {
             operator = '';
@@ -89,8 +94,6 @@ function calculator() {
             display.textContent = '';
             secondDisplay.textContent = `${firstNum}${operator}`;
         } 
-        
-        
     }))
 }
 calculator();
@@ -103,7 +106,6 @@ function reset(){
         secondNum = '';
         operator = '';
         result = '';
-        equal = false;
         display.textContent = '';
         secondDisplay.textContent = '';
     });
@@ -161,3 +163,4 @@ function addDecimals() {
     })
 }
 addDecimals();
+
