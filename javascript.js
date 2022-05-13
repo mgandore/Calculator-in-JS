@@ -93,7 +93,9 @@ function calculator() {
         } else {
             display.textContent = '';
             secondDisplay.textContent = `${firstNum}${operator}`;
-        } 
+        }
+        secondNumDecimal = false;
+ 
     }))
 }
 calculator();
@@ -156,14 +158,14 @@ let firstNumDecimal = false,
 function addDecimals() {
     decimal.addEventListener('click', () =>{
         if ( firstNumDecimal == false){
-            if ( display.textContent === firstNum) {
+            if ( display.textContent === firstNum && firstNum !== '') {
                 firstNum += '.';
                 display.textContent = firstNum;
                 firstNumDecimal = true;
             }
         }
         if (secondNumDecimal == false){
-            if (display.textContent === secondNum) {
+            if (display.textContent === secondNum && secondNum !== '') {
                 secondNum += '.';
                 display.textContent = secondNum;
                 secondNumDecimal = true;
