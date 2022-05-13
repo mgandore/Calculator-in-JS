@@ -31,6 +31,7 @@ body{
     border-color: black;
     padding: 10px;
     padding-top:20px ;
+    overflow: hidden;  
 }
 
 .second-display {
@@ -40,6 +41,7 @@ body{
 
 .display {
     font-size: 42px;
+    
 }
 
 .buttons{ 

@@ -108,6 +108,8 @@ function reset(){
         result = '';
         display.textContent = '';
         secondDisplay.textContent = '';
+        firstNumDecimal = false,
+        secondNumDecimal = false;
     });
 }
 reset();
@@ -117,6 +119,10 @@ function del(){
     const toDel = document.querySelector('.del')
     toDel.addEventListener('click', () => {
         if ( firstNum !== '' && secondNum === '' && operator === '') {
+            ///// test if last ch is '.';
+            if (firstNum.slice(-1) === '.') {
+                firstNumDecimal = false;
+            }
             firstNum = firstNum
                             .toString()
                             .slice(0, -1);
@@ -130,7 +136,12 @@ function del(){
             display.textContent = operator;
             secondDisplay.textContent = secondDisplay.textContent.slice(0, -1);
         } else {
-            secondNum = secondNum.slice(0, -1);
+            if (secondNum.slice(-1) === '.') {
+                secondNumDecimal = false;
+            }
+            secondNum = secondNum
+                            .toString()
+                            .slice(0, -1);
             display.textContent = secondNum; 
         }
     });
@@ -148,19 +159,19 @@ function addDecimals() {
             if ( display.textContent === firstNum) {
                 firstNum += '.';
                 display.textContent = firstNum;
-                decimalPressed = true;
+                firstNumDecimal = true;
             }
         }
         if (secondNumDecimal == false){
             if (display.textContent === secondNum) {
                 secondNum += '.';
                 display.textContent = secondNum;
-                secondNumDecimal = false;
+                secondNumDecimal = true;
             }
             
         }
 
-    })
+    });
 }
 addDecimals();
 
