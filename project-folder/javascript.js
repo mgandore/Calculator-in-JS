@@ -20,12 +20,22 @@ function percent(a, b) {
 
 //////////////////////////////////////////////////////////////////////////////////
 
+function countDecimals(number) {
+    const splitted = number.toString().split(".");
+    if (splitted.length > 1) {
+        return splitted[1].length;
+    }
+}
+
+/////////////////////////////////////////////////////////////////////////////////
 const display = document.querySelector('.display')
 const secondDisplay = document.querySelector('.second-display')
 const numbers = document.querySelectorAll('.number')
 const operators = document.querySelectorAll('.operator')
 const decimal = document.querySelector('.decimal')
 
+let firstNumDecimal = false,
+    secondNumDecimal = false;
 
 let firstNum = '',
     secondNum = '',
@@ -79,7 +89,10 @@ function calculator() {
                 alert ('WARNING!! You can\'t divide by 0');
                 secondNum = '';
             } else {
-                firstNum = result.toFixed(3);
+                if (countDecimals(result) > 10) {
+                    result = result.toFixed(10);
+                } 
+                firstNum = result;
                 operator = op.textContent;  
                 secondNum = '';
             }
@@ -121,7 +134,6 @@ function del(){
     const toDel = document.querySelector('.del')
     toDel.addEventListener('click', () => {
         if ( firstNum !== '' && secondNum === '' && operator === '') {
-            ///// test if last ch is '.';
             if (firstNum.slice(-1) === '.') {
                 firstNumDecimal = false;
             }
@@ -151,8 +163,6 @@ function del(){
 del();
 
 
-let firstNumDecimal = false,
-    secondNumDecimal = false;
 
     
 function addDecimals() {
