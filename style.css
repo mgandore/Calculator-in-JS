@@ -1,8 +1,10 @@
-body{
-    display:flex;
+body {
+    display: flex;
     align-items: center;
     justify-content: center;
-    position : absolute; width: 100%; height: 100%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     background-color: #0d3461;
     background-color: rgb(199, 194, 174);
@@ -15,25 +17,25 @@ body{
     flex-wrap: wrap;
     width: 450px;
     height: 550px;
-    border: 5px solid #96855e; 
+    border: 5px solid #96855e;
     border-radius: 15px;
-    background-color: #c0ab76; 
+    background-color: #c0ab76;
     box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
 }
 
 .container {
-    font-family:'Courier New', Courier, monospace ;    
+    font-family: 'Courier New', Courier, monospace;
     width: 380px;
     height: 80px;
-    background-color:#bccd95;
+    background-color: #bccd95;
     color: darkblue;
     align-items: center;
-    border: 1px solid #485727; 
+    border: 1px solid #485727;
     border-radius: 10px;
     padding: 10px;
-    padding-top:20px ;
+    padding-top: 20px;
     overflow: hidden;
-    box-shadow: inset 5px 5px 20px 0px rgba(0, 0, 0, 0.25);  
+    box-shadow: inset 5px 5px 20px 0px rgba(0, 0, 0, 0.25);
 }
 
 .second-display {
@@ -43,90 +45,95 @@ body{
 
 .display {
     font-size: 42px;
-    
+
 }
 
-.buttons{ 
+.buttons {
     display: grid;
-    grid-template-columns: auto auto auto auto ;
+    grid-template-columns: auto auto auto auto;
     margin-bottom: 35px;
 
 }
 
 button {
-    font-family:'Courier New', Courier, monospace ;    
+    font-family: 'Courier New', Courier, monospace;
     font-weight: 600;
-    font-size:x-large;
+    font-size: x-large;
     color: azure;
     width: 90px;
     height: 45px;
     margin: 5px;
     margin-top: 15px;
     border-style: outset;
-    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);    
- }
+    box-shadow: inset 0px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
 
- button:hover {
+.type {
+    width: 200px;
+}
+
+button:hover {
     transform: translateY(5px);
     box-shadow: inset 0px 10px 20px 2px rgba(0, 0, 0, 0.25);
- }
+}
 
- .number,
- .decimal {
-     background-color: #d8cabe;
-     color: #c96c36;
- }
+.number,
+.decimal {
+    background-color: #d8cabe;
+    color: #c96c36;
+}
 
-.number:hover ,
-.decimal:hover{
+.number:hover,
+.decimal:hover {
     background-color: #e4ddd7;
     color: #c07d55;
 }
 
-.number:active ,
-.decimal:active{
+.number:active,
+.decimal:active {
     background-color: #c4ab96;
     color: #a8511e;
 
 }
 
- .operator,
- .equal {
-     color: white;
+.operator,
+.equal {
+    color: white;
     background-color: orange;
-    
- }
 
- .operator:hover,
- .equal:hover {
+}
+
+.operator:hover,
+.equal:hover {
     background-color: #ffc353;
-    
- }
 
- .operator:active,
- .equal:active {
+}
+
+.operator:active,
+.equal:active {
     background-color: #e69500;
-    
- }
 
- .zero {
-    grid-column:1 / 3;
+}
+
+.zero {
+    grid-column: 1 / 3;
     width: auto;
- }
+}
 
- .clear,
- .del {
-     background-color: red;
- }
+.clear,
+.del,
+.type {
+    background-color: red;
+}
 
- .clear:hover,
- .del:hover {
-     background-color: rgb(247, 83, 83);
- }
+.clear:hover,
+.del:hover,
+.type:hover {
+    background-color: rgb(247, 83, 83);
+}
 
- .clear:active,
- .del:active {
-     background-color: rgb(196, 27, 5);
- }
-
- 
+.clear:active,
+.del:active,
+.type:active {
+    background-color: rgb(196, 27, 5);
+}
